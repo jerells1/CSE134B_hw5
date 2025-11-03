@@ -1,7 +1,25 @@
 * {
     margin: 0;
     padding: 0;
+    --default-text-color: black;
+    --default-border-radius: 1rem
 }
-header h1, header nav, header li, header ul {
-            display: inline
-        }
+
+header {
+    width: 90vw;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    nav > * {
+        margin: 1rem;
+        font-size:1.2rem;
+    }
+    * {
+        display: inline;
+    }
+}
+
+a, a:hover, a:visited {
+    color: black;
+}
