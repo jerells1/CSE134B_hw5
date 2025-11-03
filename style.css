@@ -11,15 +11,26 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    #logo {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    a{
+        color: var(--default-text-color);
+        margin: auto;
+        text-decoration: none;
+        padding: 1rem
+    }
+    a:visited {
+    }
     nav > * {
         margin: 1rem;
         font-size:1.2rem;
+        
     }
     * {
         display: inline;
+        margin: auto;
     }
 }
 
-a, a:hover, a:visited {
-    color: black;
-}
