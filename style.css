@@ -1,22 +1,32 @@
 * {
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    font-family: var(--default-font);
     --default-text-color: black;
-    --default-border-radius: 1rem
+    --default-border-radius: 1rem;
+    --header-color:linear-gradient(180deg,rgba(5, 177, 245, 1) 0%, rgba(0, 78, 145, 1) 100%);
+    --default-font: 'system-ui', 'sans-serif';
+}
+
+body {
+    display: block;
 }
 
 header {
-    width: 90vw;
+    background: var(--header-color, blue);
+    width: 100vw;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: fit-content;
     #logo {
         font-weight: bold;
-        font-size: 1.5rem;
+        font-size: 2.5vw;
     }
     a{
-        color: var(--default-text-color);
+        color: var(--default-text-color, black);
         margin: auto;
         text-decoration: none;
         padding: 1rem
@@ -24,8 +34,9 @@ header {
     a:visited {
     }
     nav > * {
-        margin: 1rem;
-        font-size:1.2rem;
+        margin: calc(5px);
+        font-size: 2vw;
+        white-space: nowrap;
         
     }
     * {
@@ -34,3 +45,15 @@ header {
     }
 }
 
+footer {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    p {
+        text-align: center;
+        justify-self: center;
+        margin: auto;
+    }
+}

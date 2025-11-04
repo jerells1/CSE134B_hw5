@@ -6,9 +6,47 @@
     <title>Jessie Personal Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        img {
-            border-radius: 10px;
-            max-width: 100vw;
+        article {
+                display: grid;
+                grid-template-areas: 'textTitle text';
+                align-items: center;
+                color: white;
+                background-image: url('assets/Picture4_0.jpg');
+                background-size: cover;
+                height: 75vh;
+                width: 100vw;
+                padding: 10px;
+            }
+        @media (max-width: 599px) {
+
+        }
+        article > h1 {
+            grid-area: textTitle;
+            text-align: center;
+            vertical-align: middle;
+        }
+        article > p {
+            grid-area: text;
+            text-align: center;
+            font-size: 2rem;
+            letter-spacing: 0.25em;
+            animation: typing 2.5s steps(30,end), blink 0.75s step-end infinite;
+            border-right: 0.25em solid white;
+            margin: 0 auto;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+            
+
+        @keyframes typing {
+            from {width: 0}
+            to {width: 100%}
+        }
+
+        @keyframes blink {
+            from {border-color:transparent} 
+            50% {border-color:white}
+            to {border-color: transparent}
         }
     </style>
 </head>
@@ -24,13 +62,12 @@
         </nav>
     </header>
     <main>
-        <h1>A biologist with a programming background</h1>
-        <picture>
-            <source
-                srcset="/assets/coding-background-9izlympnd0ovmpli.jpg"    
-                >
-                <img src="assets/download.jpeg" alt="">
-        </picture>
+        
+        <article>
+                <h1>A Next Generation View on Biology</h1>
+                <p>let growthFactor *= 1.5</p>
+        </article>
+        
     </main>
     <footer>
         <p>Created By Jessie for your viewing pleasure :&rpar;</p>
