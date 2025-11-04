@@ -1,18 +1,29 @@
 * {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+
     font-family: var(--default-font);
-    --default-text-color: black;
+    --default-text-color: white;
     --default-border-radius: 1rem;
     --header-color:linear-gradient(180deg,rgba(5, 177, 245, 1) 0%, rgba(0, 78, 145, 1) 100%);
     --default-font: 'system-ui', 'sans-serif';
+    --logo-color: black;
 }
 
 body {
     display: block;
 }
-
+@media  screen and (max-width:599px) {
+    header {
+        height: 10vh;
+        nav {
+            display: none;
+        }
+        #logo {
+            font-size: 5rem;
+        }
+    }
+}
 header {
     background: var(--header-color, blue);
     width: 100vw;
@@ -23,7 +34,17 @@ header {
     overflow: fit-content;
     #logo {
         font-weight: bold;
-        font-size: 2.5vw;
+        color: var(--logo-color,black);
+    }
+    @media screen and (max-width:599px) {
+        #logo {
+            font-size: 1.5rem;
+        }
+    }
+    @media screen and (min-width:600px) {
+        #logo {
+            font-size: 1.5rem;
+        }
     }
     a{
         color: var(--default-text-color, black);
@@ -47,7 +68,7 @@ header {
 
 footer {
     width: 100vw;
-    height: 100px;
+    height: 5vh;
     display: flex;
     align-items: center;
     margin: auto;
