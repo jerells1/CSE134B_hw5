@@ -21,6 +21,7 @@ projectTemplate.innerHTML = `
     }
     h2 {
         font-size: 2em;
+        text-align: center;
     }
     picture {
         display: block;
@@ -107,6 +108,10 @@ const localProjects = [
     altText: "Image of a scientist"
  }
 ]
+
+const remoteURL = 'https://api.jsonbin.io/v3/b/69366ead43b1c97be9df0994';
+
+
 
 if(!localStorage.getItem("projectData")) {
     localStorage.setItem("projectsData",JSON.stringify(localProjects));
@@ -220,7 +225,7 @@ class ProjectCard extends HTMLElement {
         } else {
             this._descriptionEl.textContent = this._visibleDescription;
             this._readMoreEl.textContent = 'Read More';
-            this.style.height = '30vh';
+            this.style.height = '35vh';
             this.style.maxHeight = '50vw';
         }
     }
@@ -263,6 +268,8 @@ function init() {
     const localBtn = document.getElementById("localbtn");
     const remoteBtn = document.getElementById("remotebtn");
     const projectsContainer = document.getElementById("projects");
+    let loadedLocal = false;
+    let loadedRemote = false;
 
     localBtn.addEventListener("click",function() {
         console.log("Loading Local");
@@ -277,13 +284,18 @@ function init() {
     function loadFromLocal() {
         try {
             const proj = localStorage.getItem("projectsData");
-            if(proj) {
+            if(proj && !loadedLocal) {
                 const projects = JSON.parse(proj);
                 displayProjects(projects);
+                loadedLocal = true;
                 console.log("Showing projects from local");
             }
             else {
-                console.log("Data empty");
+                console.log("Data empty or already loaded");
+                if(loadedLocal) {
+                    projectsContainer.innerHTML = '';
+                    loadedLocal = false;
+                }
             }
         }
         catch(error) {
@@ -291,10 +303,35 @@ function init() {
         }
     }
 
-    function loadFromRemoteServer() {
-        console.log("Loading from remote server");
+    async function loadFromRemote() {
+        console.log("Loading from remote");
+        try {
+            const response = await fetch(remoteURL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if(!response.ok) {
+                throw new Error('Error loading remote data: ', response.status);
+            }
 
+            const result = await response.json();
+            const projects = result.record;
+
+            displayProjects(projects);
+        }
+        catch(error) {
+            console.log("Error loadiing from remote server", error);
+        }
     }
 
+
+    function displayProjects(projects) {
+        for(const item of projects) {
+            const card = createCard(item);
+            projectsContainer.appendChild(card);
+        }
+    }
 
 }
