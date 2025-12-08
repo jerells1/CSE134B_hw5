@@ -84,6 +84,34 @@ projectTemplate.innerHTML = `
 
 `
 
+const localProjects = [
+ {
+    title: "Next Gen Sequencing",
+    description: "Responsible for processing data for downstream analysis. Preprocessed raw reads into FastQ files, performed filtering and trimming of samples, mapped samples to reference genome, and generated QC reports.",
+    sourceURL: "assets/aviti.jpg",
+    picURL: "assets/picture4_0.jpg",
+    altText: "Image of Aviti sequencer"
+ },
+ {
+    title: "Bioinformatics scripting",
+    description: "Developed scripts for automating common tasks for linux environments that reduced manual input times by half.",
+    sourceURL: "assets/coding-background-9izlympnd0ovmpli.jpg",
+    picURL: "assets/download.jpeg",
+    altText: "image of code"
+ },
+ {
+    title: "Laboratory Technician",
+    description: "Handled specimens coming into the lab. Inventorying new projects, preparing samples for processing, clipping samples to be digested, and storing completed projects in the warehouse.",
+    sourceURL: "assets/labtech.jpg",
+    picURL: "assets/labtech2.jpg",
+    altText: "Image of a scientist"
+ }
+]
+
+if(!localStorage.getItem("projectData")) {
+    localStorage.setItem("projectsData",JSON.stringify(localProjects));
+}
+
 class ProjectCard extends HTMLElement {
     constructor() {
         super()
@@ -214,7 +242,6 @@ function createCard(options) {
         description: "No description But his is a tekldsajlkfdsajfklsadjfd;skl fjsdkl;",
         picURL: 'assets/download.jpeg',
         sourceURL: '/assets/aviti.jpg',
-        readMoreURL: '',
         altText: 'image'
     }
 
@@ -229,3 +256,45 @@ function createCard(options) {
 }
 
 customElements.define("project-card",ProjectCard);
+
+document.addEventListener('DOMContentLoaded',init);
+
+function init() {
+    const localBtn = document.getElementById("localbtn");
+    const remoteBtn = document.getElementById("remotebtn");
+    const projectsContainer = document.getElementById("projects");
+
+    localBtn.addEventListener("click",function() {
+        console.log("Loading Local");
+        loadFromLocal();
+    });
+
+    remoteBtn.addEventListener("click",function() {
+        console.log("Loading Remote");
+        loadFromRemote();
+    });
+
+    function loadFromLocal() {
+        try {
+            const proj = localStorage.getItem("projectsData");
+            if(proj) {
+                const projects = JSON.parse(proj);
+                displayProjects(projects);
+                console.log("Showing projects from local");
+            }
+            else {
+                console.log("Data empty");
+            }
+        }
+        catch(error) {
+            console.error("Error loading data from localStorage: ",error);
+        }
+    }
+
+    function loadFromRemoteServer() {
+        console.log("Loading from remote server");
+
+    }
+
+
+}
