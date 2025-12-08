@@ -228,13 +228,4 @@ function createCard(options) {
     return card;
 }
 
-
-
-const host = document.getElementById("projects");
 customElements.define("project-card",ProjectCard);
-
-let test = createCard({title:"Next Gen Sequencing",sourceURL:'assets/aviti.jpg',description:"Responsible for handling next-gen sequencing data for downstream analysis. Processed raw data, trimmed and filtered reads,  "});
-for(let i=0; i < 5; i++) {
-    host.appendChild(createCard());
-}
-host.appendChild(test);

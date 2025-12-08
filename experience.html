@@ -7,9 +7,35 @@
     <link rel="stylesheet" href="style.css">
     <style>
         main {
-            display: flex;
+            display: block;
             justify-content: center;
         }
+
+        #loadbtn {
+             width: 50%;
+             text-align: center;
+             margin: auto;
+             margin-top: 20px;
+             button {
+                border-style: none;
+                background-color: #234C6A;
+                border-radius: 5px;
+                padding: 10px;
+                color: white;
+                font-family: 'system-ui', 'sans-serif';
+                font-size: 1.2rem;
+                margin: 0 10px;
+                transition: ease-in;
+                transition-duration: 100ms;
+             }
+             button:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+                transition: ease-in;
+                transition-duration: 100ms;
+             }
+        }
+
         #projects {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -35,6 +61,11 @@
         </nav>
     </header>
     <main>
+        <div id="loadbtn">
+            <button id="localbutn" type="button">Load Local</button>
+            <button id="remotebtn" type="button">Load Remote</button>
+        </div>
+        <br>
         <section id="projects">
         </section>
     </main>
