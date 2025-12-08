@@ -288,6 +288,7 @@ function init() {
                 const projects = JSON.parse(proj);
                 displayProjects(projects);
                 loadedLocal = true;
+                loadedRemote = true;
                 console.log("Showing projects from local");
             }
             else {
@@ -295,6 +296,7 @@ function init() {
                 if(loadedLocal) {
                     projectsContainer.innerHTML = '';
                     loadedLocal = false;
+                    loadedRemote = false;
                 }
             }
         }
@@ -318,8 +320,14 @@ function init() {
 
             const result = await response.json();
             const projects = result.record;
-
-            displayProjects(projects);
+            if(!loadedRemote) {
+                displayProjects(projects);
+                loadedRemote = true;
+            }
+            else {
+                projectsContainer.innerHTML = '';
+                loadedRemote = true;
+            }
         }
         catch(error) {
             console.log("Error loadiing from remote server", error);
